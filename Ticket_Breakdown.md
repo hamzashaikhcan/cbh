@@ -18,19 +18,84 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
 
 ## Your Breakdown Here
 
-**TICKET # 1:**
-**Title:** - Create a function that saves the data of Agent into the database.
-**User Story/Description:** - User should be able to input agent details, database should auto-generate the agent id. The function name shoule be **create(data)** which will be accepting the agent data which will be in JSON format, agent name should be in the input data and can't be null or empty, other fields i.e, agent_number, agent_address can be nullable. The ETA should be 30 minutes including unit tests and integration testing.
+1.  **Research and design:**
 
-### TICKET # 2:
+- **Acceptance criteria:**
 
-**Title:** - Create a function that generates the report of agent based on agent id.
-**User Story/Description:** - User should be able to input the agent_id to function, function name should be **get(agent_id)** which is accepting the id of the agent and gets the data from the database from Agent & Shifts table, convert that data to JSON format which includes Agent data and nested Shifts (Reports) data. Report will be a nested JSON array comprising multiple JSON objects of Shifts. The ETA should be 1 hour including unit tests and integration testing.
+  - A detailed proposal for implementing custom Agent IDs in reports is created, including a plan for storing and retrieving the IDs, a plan for updating the report generation process, and a plan for updating the user interface.
+  - A rough estimate of the time and effort required for implementation is provided.
 
-**TICKET # 3:**
-**Title:** - Design a web page, which has a form from where user can enter the data of agent.
-**User Story/Description:** - User should be able to input agent details to the form which includes Agent Name, Agent Contact & Agent Address. Agent Name is required field and other 2 fields are not required. When the user clicks on 'Save' button the API (POST: http://localhost:3000/v1/api/agent/) should be hit, the 'Save' button should be disabled and remains disabled until we get a response from the backend. After getting the response, button should be enabled. If we get the postive/success response from the server, then all fields should be cleared so that user can add new data, but if we get a negative/error response, then fields should not be cleared/reset. The ETA should be 1.5 hours including user testing.
+- **Time/effort estimate:** 2-4 hours
+- **Implementation details:**
 
-**TICKET # 4:**
-**Title:** - Design a report page, which generates the report of agent based on the input agent id.
-**User Story/Description:** - User should be able to select agent from the dropdown list which includes search option within a dropdown. User can search agent name from the search option. After selecting the Agent, user will be able to click submit button. Submit button should remain disabled until user selects the Agent from the dropdown list. When user clicks the submit button, an API (GET: http://localhost:3000/v1/api/report/:agent_id) will be hit which expects the agent id and return a detailed report in a JSON format. That report will be displayed in the tabular format to the user. The ETA should be 2 hours including user testing.
+  - Analyze the current data model and determine how custom Agent IDs can be stored and retrieved.
+  - Determine the necessary changes to the report generation process to use custom Agent IDs instead of internal database IDs.
+  - Determine the necessary changes to the user interface to allow Facilities to enter and edit custom Agent IDs.
+  - Create a detailed proposal document outlining the above plans and estimates.
+
+2.  **Implement M2M relationship between agents and facilities:**
+
+- **Acceptance criteria:**
+  - A new M2M table is created to store the relationship between agents and facilities.
+  - The data model is modified to support the M2M relationship.
+  - The user interface is updated to allow Facilities to assign custom Agent IDs to specific agents.
+  - Data migration scripts are created and run to ensure that existing data is migrated to the new storage structure.
+- **Time/effort estimate:** 4-8 hours
+- **Implementation details:**
+
+  - Create a new M2M table in the database to store the relationship between agents and facilities.
+  - Modify the data model to support the M2M relationship.
+  - Update the user interface to allow Facilities to assign custom Agent IDs to specific agents.
+  - Write and run data migration scripts to ensure that existing data is migrated to the new storage structure.
+  - Test the updated data storage system to ensure it works as expected.
+
+3.  **Implement custom Agent ID storage:**
+
+- **Acceptance criteria:**
+
+  - The database or data storage system is updated to support the storage of custom Agent IDs for each Agent.
+  - Data migration scripts are created and run to ensure that existing data is migrated to the new storage structure.
+  - The custom Agent ID field is added to the user interface for entering and editing the IDs.
+  - The custom Agent ID field is added to the Shifts table in the database to store the ID for each Shift.
+
+- **Time/effort estimate:** 4-8 hours
+- **Implementation details:**
+
+  - Create a new table or column in the database to store the custom Agent IDs.
+  - Modify the data model to support the new field.
+  - Write and run data migration scripts to ensure that existing data is migrated to the new storage structure.
+  - Update the user interface to include a field for entering and editing custom Agent IDs.
+  - Update the Shifts table in the database to include a field for the custom Agent ID.
+  - Test the updated data storage system to ensure it works as expected.
+
+4.  **Modify report generation process:**
+
+- **Acceptance criteria:**
+
+  - The report generation process is modified to use the custom Agent IDs instead of the internal database IDs when generating reports.
+  - The report template is updated to include the custom Agent IDs.
+  - The report generation code is updated to retrieve the custom Agent IDs from the database.
+  - The modified report generation process is tested and verified to work as expected.
+
+- **Time/effort estimate:** 4-8 hours
+- **Implementation details:**
+
+  - Update the report template to include the custom Agent IDs.
+  - Modify the report generation code to retrieve the custom Agent IDs from the database instead of the internal database IDs.
+  - Test the modified report generation process to ensure it works as expected.
+  - Fix any issues that are discovered during testing.
+
+5.  **Documentation and testing:**
+
+- **Acceptance criteria:**
+
+  - Detailed documentation for the new feature is created.
+  - Test cases are created and executed to ensure the feature works as expected.
+  - Any issues that are discovered during testing are fixed.
+
+- **Time/effort estimate:** 2-4 hours
+- **Implementation details:**
+  - Write documentation for the new feature, including instructions for how Facilities can enter and edit custom Agent IDs, and how the custom IDs will be used in reports.
+  - Create test cases to ensure that the feature works as expected, including testing the M2M relationship, custom Agent ID storage, report generation, and user interface functionality.
+  - Execute the test cases and verify that the feature works as expected.
+  - Fix any issues that are discovered during testing.

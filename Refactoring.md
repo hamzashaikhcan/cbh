@@ -14,8 +14,20 @@ You will be graded on the exhaustiveness and quality of your unit tests, the dep
 
 ## JUSTIFICATION OF REFACTORING:
 
-- I assinged TRIVIAL_PARTITION_KEY to the candidate as we will eventually assign that value if none of our condition gets true.
+- Imports the crypto module, which is used to create hash values.
 
-- Instead of whole if else on event and event.partitionKey is use ternary condition and assign the value of candidate accordingly.
+- Defines two constants: **DEFAULT_PARTITION_KEY** and **MAX_PARTITION_KEY_LENGTH**.
 
-- I removed 1 'if condition' of candidate and added the condition on line # 21 where we are checking the type of candidate variable.
+- Defines a helper function getHash that returns the SHA3-512 hash of a given string.
+
+- Exports a function deterministicPartitionKey that takes an event object as an argument.
+
+- Inside the deterministicPartitionKey function, the code initializes the candidate variable to the default partition key.
+
+- If the event object is provided, the code sets the candidate variable to the value of the partitionKey field if it exists, or to the hash of the stringified event object if the partitionKey field is not present.
+
+- If the candidate value is not a string, the code stringifies it.
+
+- If the candidate value is longer than the maximum allowed length, the code calculates its hash.
+
+- Finally, the deterministicPartitionKey function returns the candidate value.
